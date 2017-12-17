@@ -6,6 +6,7 @@ author:     Jacob Tomlinson
 summary:    Carte Noire is a dark blog theme for Jekyll focusing on a clear reading experience.
 categories: jekyll
 thumbnail:  leaf
+comments: true
 tags:
  - welcome
  - to
