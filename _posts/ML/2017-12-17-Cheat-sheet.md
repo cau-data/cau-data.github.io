@@ -146,14 +146,14 @@ A group of consecutive entries in a two-dimensional signal that has a rectangula
 
 Accepts as input:
 - feature vector of size $$W_1 \times H_1 \times D_1$$
-- filters of size  $F \times F \times D_1 \times D_2$
-- biases of length  $D_2$
-- stride  $S$
-- amount of zero padding  $P$
+- filters of size  $$F \times F \times D_1 \times D_2$$
+- biases of length  $$D_2$$
+- stride  $$S$$
+- amount of zero padding  $$P$$
 
-Outputs another feature vector of size  $W_2 \times H_2 \times D_2$ , where
-- $W_2 = \frac{W_1-F+2P}{S}+1$
-- $H_2 = \frac{H_1-F+2P}{S}+1$
+Outputs another feature vector of size  $$W_2 \times H_2 \times D_2$$ , where
+- $$W_2 = \frac{W_1-F+2P}{S}+1$$
+- $$H_2 = \frac{H_1-F+2P}{S}+1$$
 
 The d-th channel in the output feature vector is obtained by performing a valid convolution with stride  S of the d-th filter and the padded input.
 [source](http://cs231n.github.io/convolutional-networks/)
@@ -172,7 +172,7 @@ The amount by which a filter shifts spatially when convolving it with a feature 
 ![](https://i.imgur.com/36zPXcY.png)
 
 
-A filter is dilated by a factor  $Q$ by inserting in every one of its channels independently  $Q-1$ zeros between the filter elements.
+A filter is dilated by a factor  $$Q$$ by inserting in every one of its channels independently  $$Q-1$$ zeros between the filter elements.
 [source](http://cs231n.github.io/convolutional-networks/) 
 
 
@@ -181,14 +181,14 @@ A filter is dilated by a factor  $Q$ by inserting in every one of its channels i
 ![](https://i.imgur.com/hzYyV0W.png)
 
 
-In practice, FC layers are implemented using a convolutional layer. To see how this might be possible, note that when an input feature vector of size $H \times W \times D_1$ is convolved with a filter bank of size  $H \times W \times D_1 \times D_2$ , it results in an output feature vector of size  $1 \times 1 \times D_2$ . Since the convolution is valid and the filter can not move spatially, the operation is equivalent to a fully connected one. More over, when this feature vector of size $1 \times 1 \times D_2$ is convolved with another filter bank of size  $1 \times 1 \times D_2 \times D_3$ , the result is of size  $1 \times 1 \times D_3$ . In this case, again, the convolution is done over a single spatial location and therefore equivalent to a fully connected layer.
+In practice, FC layers are implemented using a convolutional layer. To see how this might be possible, note that when an input feature vector of size $$H \times W \times D_1$$ is convolved with a filter bank of size  $$H \times W \times D_1 \times D_2$$ , it results in an output feature vector of size  $$1 \times 1 \times D_2$$ . Since the convolution is valid and the filter can not move spatially, the operation is equivalent to a fully connected one. More over, when this feature vector of size $$1 \times 1 \times D_2$$ is convolved with another filter bank of size  $$1 \times 1 \times D_2 \times D_3$$ , the result is of size  $$1 \times 1 \times D_3$$ . In this case, again, the convolution is done over a single spatial location and therefore equivalent to a fully connected layer.
 [source](http://cs231n.github.io/linear-classify/) 
 
 #### Linear classifier
 
 ![](https://i.imgur.com/Fin8XWu.png)
 
-This is implemented in practice by employing a fully connected layer of size  H \times W \times D \times C , where  C is the number of classes. Each one of the filters of size  H \times W \times D corresponds to a certain class and there are  C classifiers, one for each class. 
+This is implemented in practice by employing a fully connected layer of size $$ H \times W \times D \times C$$ , where  C is the number of classes. Each one of the filters of size $$ H \times W \times D $$corresponds to a certain class and there are  C classifiers, one for each class. 
 
 ### Pooling Layers
 
@@ -199,15 +199,15 @@ This is implemented in practice by employing a fully connected layer of size  H 
 
 Accepts as input:
 
-- feature vector of size  $W_1 \times H_1 \times D_1$
-- size of neighbourhood  $F$
-- stride $S$
+- feature vector of size  $$W_1 \times H_1 \times D_1$$
+- size of neighbourhood  $$F$$
+- stride $$S$$
 
 Outputs another feature vector of size W_2 \times H_2 \times D_1 , where Accepts as input:
-- $W_2 = \frac{W_1 - F}{S} + 1$
-- $H_2 = \frac{H_1 - F}{S} + 1$
+- $$W_2 = \frac{W_1 - F}{S} + 1$$
+- $$H_2 = \frac{H_1 - F}{S} + 1$$
 
-The pooling resizes independently every channel of the input feature vector by applying a certain function on neighbourhoods of size  $F \times F$ , with a stride  $S$ .
+The pooling resizes independently every channel of the input feature vector by applying a certain function on neighbourhoods of size  $$F \times F$$ , with a stride  $$S$$ .
 [source](http://cs231n.github.io/convolutional-networks/)
 
 #### Max pooling
@@ -224,9 +224,9 @@ Computes the average of every neighbourhood.
 
 Accepts as input:
 
-- feature vector of size  $W \times H \times D$
-- bias vector of size  $D$
-- gain vector of size  $D$
+- feature vector of size  $$W \times H \times D$$
+- bias vector of size  $$D$$
+- gain vector of size  $$D$$
 
 Outputs another feature vector of the same size. This layer operates on each channel of the feature vector independently. First, each channel is normalized to have a zero mean, unit variance and then it is multiplied by a gain and shifted by a bias. The purpose of this layer is to ease the optimization process.
 
@@ -241,7 +241,7 @@ Takes the output of the classifier, applies exponent on the score assigned to ea
 ![](https://i.imgur.com/PXmUHMm.png)
 
 
-The sigmoid, defined as  $f(x) = \frac{1}{1 + e^{-x}}$ , is a non-linear function that suffers from saturation.
+The sigmoid, defined as  $$f(x) = \frac{1}{1 + e^{-x}}$$ , is a non-linear function that suffers from saturation.
 
 #### Saturation of activation
 
@@ -253,14 +253,14 @@ An activation that has an almost zero gradient at certain regions. This is an un
 ![](https://i.imgur.com/Y9plGkf.png)
 
 
-This non-linearity squashes a real-valued number to the range  $[-1, 1]$ . Like the sigmoid neuron, its activations saturate, but unlike the sigmoid neuron its output is zero-centered. 
+This non-linearity squashes a real-valued number to the range  $$[-1, 1]$$ . Like the sigmoid neuron, its activations saturate, but unlike the sigmoid neuron its output is zero-centered. 
 
 #### ReLu
 
 ![](https://i.imgur.com/AeKhUFV.png)
 
 
-The most popular non-linearity in modern deep learning, partly due to its non-saturating nature, defined as  $f(x) = \max(x,0)$ . 
+The most popular non-linearity in modern deep learning, partly due to its non-saturating nature, defined as  $$f(x) = \max(x,0)$$ . 
 
 #### Dead filter
 
@@ -271,7 +271,7 @@ A filter which always results in negative values that are mapped by ReLU to zero
 ![](https://i.imgur.com/O1NjGmX.png)
 
 
-A possible fix to the dead filter problem is to define ReLU with a small slope in the negative part, i.e.,  $f(x) = \left\{\begin{array}{lr} ax, & \text{for } x<0\\ x, & x \geq 0 \end{array}\right\}$ . 
+A possible fix to the dead filter problem is to define ReLU with a small slope in the negative part, i.e.,  $$f(x) = \left\{\begin{array}{lr} ax, & \text{for } x<0\\ x, & x \geq 0 \end{array}\right\}$$ . 
 image source
 
 ---
@@ -285,18 +285,18 @@ image source
 
 Accepts as input:
 
-- feature vector of size  $H \times W \times D$
-- probability  $p$
+- feature vector of size  $$H \times W \times D$$
+- probability  $$p$$
 
-Outputs another feature vector of the same size. At train time, every neuron in it is set to the value of the corresponding neuron in the input with probability  $p$, and zero otherwise. At test time, the output feature vector is equal to the input one scaled by  $p$.
+Outputs another feature vector of the same size. At train time, every neuron in it is set to the value of the corresponding neuron in the input with probability  $$p$$, and zero otherwise. At test time, the output feature vector is equal to the input one scaled by  $$p$$.
 
 ### Weight decay
 
-Soft  $L_2$ constraint on the parameters of the network. This is done by decreasing every parameter in each iteration of SGD by its value times a small constant, corresponding to the strength of the regularization.
+Soft  $$L_2$$ constraint on the parameters of the network. This is done by decreasing every parameter in each iteration of SGD by its value times a small constant, corresponding to the strength of the regularization.
 
 ### Max norm constraints
 
-Hard  $L_2$ constraint on the parameters of the network. This is done by imposing an upper bound on the  $L_2$ norm of every filter and using projected gradient descent to enforce the constraint.
+Hard  $$L_2$$ constraint on the parameters of the network. This is done by imposing an upper bound on the  $$L_2$$ norm of every filter and using projected gradient descent to enforce the constraint.
 source
 
 ### Data augmentation
