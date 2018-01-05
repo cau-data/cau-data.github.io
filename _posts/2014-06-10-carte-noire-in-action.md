@@ -36,7 +36,16 @@ class Awesome < ActiveRecord::Base
   end
 end
 {% endhighlight %}
-
+```python
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+# Open with cv2 (read and show)
+img = cv2.imread('salamander.jpg',cv2.IMREAD_GRAYSCALE)
+cv2.imshow('image',img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
 ```html
 <!DOCTYPE html>
 <title>Title</title>
