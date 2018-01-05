@@ -145,7 +145,7 @@ A group of consecutive entries in a two-dimensional signal that has a rectangula
 
 
 Accepts as input:
-- feature vector of size $W_1 \times H_1 \times D_1$
+- feature vector of size $$W_1 \times H_1 \times D_1$$
 - filters of size  $F \times F \times D_1 \times D_2$
 - biases of length  $D_2$
 - stride  $S$
